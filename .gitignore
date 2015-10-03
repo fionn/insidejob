@@ -1,4 +1,5 @@
 *.swp
 *.sh
+blacklist.txt
 creds.py
 __pycache__/
