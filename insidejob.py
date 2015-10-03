@@ -38,10 +38,7 @@ while True:
         retweet()
         sleep(60 * 60)
     except tweepy.error.TweepError as e:
-        if e.response.status_code == 403:
-            print("I've already retweeted that")
-        else:
-            print(e)
+        print(e)
         sleep(15 * 60)
     except IndexError as e:      # in case the search results
         print("IndexError:", e)  # list is empty
