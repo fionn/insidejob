@@ -26,7 +26,7 @@ def retweet():
     tweet = tweets.pop()
 
     print("\"" + unescape(tweet.text) + "\" from @" + tweet.user.screen_name, 
-            "at", str(tweet.created_at), "UTC (" + str(len(tweets)), "left)")
+          "at", str(tweet.created_at), "UTC (" + str(len(tweets)), "left)")
 
     api.retweet(tweet.id)
 
