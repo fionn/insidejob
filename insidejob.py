@@ -12,10 +12,8 @@ api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 def criteria(tweet):
     if ("RT" in tweet.text) or ("t.co" in tweet.text) or (len(tweet.text) > 48):
         return False
-
     if api.get_status(tweet.id).retweeted:
         return False
-
     return True
 
 
@@ -25,7 +23,6 @@ def retweet():
 
     tweets = api.search(q=search, lang='en', count=100)
     tweets[:] = [tweet for tweet in tweets if criteria(tweet)]
-
     tweet = tweets.pop()
 
     print("\"" + unescape(tweet.text) + "\" from @" + tweet.user.screen_name, 
@@ -40,9 +37,9 @@ while True:
     except tweepy.error.TweepError as e:
         print(e)
         sleep(15 * 60)
-    except IndexError as e:      # in case the search results
-        print("IndexError:", e)  # list is empty
-        sleep(15)
+    except IndexError as e:      # in case the list of
+        print("IndexError:", e)  # tweets is empty
+        sleep(15 * 60)
     except Exception as e:
         print(e)
         raise
