@@ -16,14 +16,13 @@ def criteria(tweet):
         return False
     return True
 
-
 def retweet():
     blacklist = open("blacklist.txt", "r").read().splitlines()
     search = "\"an inside job\" -" + " -".join(blacklist)
 
     tweets = api.search(q=search, lang='en', count=100)
     tweets[:] = [tweet for tweet in tweets if criteria(tweet)]
-    tweet = tweets.pop()
+    tweet = tweets.pop(0)
 
     print("\"" + unescape(tweet.text) + "\" from @" + tweet.user.screen_name, 
           "at", str(tweet.created_at), "UTC (" + str(len(tweets)), "left)")
